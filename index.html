@@ -1,79 +1,60 @@
-<form onsubmit="handleForm(event)">
-    <label for="name">Name</label>
-    <input type="text" id="name">
-    <span class="name-err"></span>
-    <br><br>
-
-    <label for="email">Email</label>
-    <input type="email" id="email">
-    <span class="email-err"></span>
-    <br><br>
-
-    <label for="password">Password</label>
-    <input type="text" id="password">
-    <span class="password-err"></span>
-    <br><br>
-
-    <label for="consent">Checkbox </label>
-    <input type="checkbox" id="consent" name="checkbox" value="Checkbox "><br><br>
-
-    <button type="submit">Signup</button>
-</form>
-</body>
-
-
-<script>
-const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;//a-z A-Z 
-
-function isEmailAddress(str) {
-
-return str.match(pattern);
-
-}
-
-const signUpFormValidation = (formData) => {
-const error = {}
-const fields = ['email', 'password', 'name']
-fields.forEach(field => {
-if (!formData[`${field}`]) {
-    error[[field]] = `${field} not present`
-}
-})
-if (formData.name && (formData.name.length < 3 || formData.name.length > 20)) {
-error['name'] = 'Name should be atleast 4 chars and less than 20 chars'
-}
-if (formData.password && (formData.password.length < 6 || formData.password.length > 30)) {
-error['password'] = 'Password should be atleast 6 chars and less than 30 chars'
-}
-
-if (formData.email && isEmailAddress(formData.email) === null) {
-error['email'] = 'Not a valid email'
-}
-if (Object.keys(error).length === 0) return null
-return error
-}
-function showError(id,err){
-document.getElementsByClassName(`${id}-err`)[0].innerText=err;
-}
-function clearErr(id){
-id ? document.getElementsByClassName(`${id}-err`)[0].innerText='':null;
-}
-
-
-function handleForm(e){
-e.preventDefault();
-const why=['email','name','password'];
-why.forEach(el=>clearErr(el))
-const email=document.getElementById('email').value;
-const name=document.getElementById('name').value;
-const password=document.getElementById('password').value;
-
-const errs=signUpFormValidation({email,name,password})
-console.log(errs)
-
-for(const m in errs){
-    console.log(m)
-showError(m,errs[m]);
-}
-}
-</script>
+<!DOCTYPE html>
+ 
+ <html>
+     <head>
+         <meta charset="utf-8">
+         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+         <title></title>
+         <meta name="description" content="">
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+         <link rel="stylesheet" href="style.css">
+         <!-- <script src="javascript.js" defer></script> -->
+     </head>
+     <body>
+         <div id="main">
+             <section class="card-section">
+               <div class="container">
+                 <div class="community">
+                   <h2 class="community-header">Join our community</h2>
+                   <h3 class="community-sub-header">
+                     30-day, hassle-free monkey back gurarantee
+                   </h3>
+                   <p class="community-text">
+                     Gain access to our full library of tutorials along with expert
+                     code reviews. Perfect for any developers who are serious about
+                     honing their skills.
+                   </p>
+                 </div>
+                 <div class="card-details">
+                   <div class="card">
+                     <p class="card-header">Monthly Subscription</p>
+                     <div class="price">
+                       <span>$29</span>
+                       <p>Per Month</p>
+                     </div>
+                     <p class="card-details-text">
+                       Full access for less than $1 a day.
+                     </p>
+                     <a href="#" class="btn btn-card">
+                       Sign Up
+                     </a>
+                   </div>
+                   <div class="why-us">
+                     <h4 class="why-us-header">Why Us</h4>
+                     <div class="why-us-lists">
+                       <ul class="why-us-items">
+                         <li class="why-us-item">Tutorials by industry experts</li>
+                         <li class="why-us-item">Peer & expert code review</li>
+                         <li class="why-us-item">Coding exercises</li>
+                         <li class="why-us-item">Access yo our GitHub repos</li>
+                         <li class="why-us-item">Community forum</li>
+                         <li class="why-us-item">Flashcard decks</li>
+                       </ul>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </section>
+           </div>
+     </body>
+ </html>
